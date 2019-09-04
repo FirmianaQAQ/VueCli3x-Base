@@ -1,6 +1,6 @@
 {
-  "name": "vue-test",
-  "version": "0.1.0",
+  "name": "vue-cli3x-base",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

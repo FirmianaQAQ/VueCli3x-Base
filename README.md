@@ -1,4 +1,4 @@
-# vue-test
+# vue-cli3x-base
 
 ## Project setup
 ```
