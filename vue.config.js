@@ -1,14 +1,15 @@
 const path = require('path')
-
+// 显示当前环境
 module.exports = {
-  publicPath: './', // 基本路径
+  publicPath: './', // 基本路径(vue-cli3.3新版本)
   outputDir: 'dist', // 输出文件目录
+  assetsDir: 'static', // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
   // dev配置
   devServer: {
-    open: true,
+    open: true, // 配置自动启动浏览器
     port: 8828,
     https: false,
-    hot: true,
+    hot: true, // 热更新
     proxy: null,
     overlay: {
       warnings: false,
@@ -26,12 +27,17 @@ module.exports = {
   lintOnSave: true,
   // 调整内联文件大小限制 10kb
   chainWebpack: config => {
+    // Stylus 的在每个单文件组件和 Stylus 文件中导入
+    const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
+    types.forEach(type => addStyleResource(config.module.rule('stylus').oneOf(type)))
+
     config.module
       .rule('images')
       .use('url-loader')
       .loader('url-loader')
       .tap(options => Object.assign(options, { limit: 10240 }))
   },
+
   // webpack配置
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {
@@ -46,10 +52,22 @@ module.exports = {
       resolve: {
         alias: {
           '@': path.resolve(__dirname, './src'),
-          '@components': path.resolve(__dirname, './src/components'),
           '@views': path.resolve(__dirname, './src/views'),
-          '@assets': path.resolve(__dirname, './src/assets')
+          '@api': path.resolve(__dirname, './src/api'),
+          '@components': path.resolve(__dirname, './src/components'),
+          '@assets': path.resolve(__dirname, './src/assets'),
+          '@router': path.resolve(__dirname, './src/router'),
+          '@store': path.resolve(__dirname, './src/store'),
+          '@tools': path.resolve(__dirname, './src/tools')
         } // 别名配置
+      },
+      // 打印信息
+      stats: {
+        colors: true,
+        modules: false,
+        children: false,
+        chunks: false,
+        chunkModules: false
       }
     })
   },
@@ -61,4 +79,14 @@ module.exports = {
   pluginOptions: {},
   // PWA 插件相关配置
   pwa: {}
+}
+// stylus 自动化导入文件 (用于颜色、变量、mixin……)，使用 style-resources-loader
+function addStyleResource(rule) {
+  rule.use('style-resource')
+    .loader('style-resources-loader')
+    .options({
+      patterns: [
+        path.resolve(__dirname, './src/assets/stylus/style.styl')
+      ]
+    })
 }
