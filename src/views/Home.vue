@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import api from '@/api/api'
+
 export default {
   name: 'Home',
   components: {
@@ -21,13 +23,16 @@ export default {
     }
   },
   created() {
-
+    this.getUserList()
   },
   mounted() {
 
   },
   methods: {
-
+    async getUserList() {
+      const res = await api.user.getUserList()
+      console.log(res)
+    }
   }
 }
 </script>
