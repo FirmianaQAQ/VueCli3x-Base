@@ -4,6 +4,7 @@ import router from '@router/router'
 import store from '@store/index'
 import method from '@tools/method'
 import VueLazyload from 'vue-lazyload'
+import './assets/stylus/style.styl'
 
 const FastClick = require('fastclick')
 
@@ -34,7 +35,4 @@ Vue.config.productionTip = false
 
 // 显示当前环境
 const mode = process.env.mode || process.env.NODE_ENV
-// if (mode === 'development')
-console.log(`%c ${mode} `, 'background:#aaa;color:#bada55')
-
-console.log(process.env)
+if (mode === 'development') console.log(`%c ${mode} `, 'background:#aaa;color:#bada55')

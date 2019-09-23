@@ -5,29 +5,39 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import Info from '@views/Info.vue'
-
+// import store from '../store/index.js'
+// import * as types from '../store/mutation-types'
 Vue.use(Router)
 
-export default new Router({
+// 引入各个路由
+import home from './home' // 首页
+
+const router = new Router({
+  scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: () => import('@views/Home.vue')
+      redirect: 'login'
     },
     {
-      path: '/info',
-      name: 'info',
-      component: Info
+      path: '/login',
+      name: 'login',
+      component: () => import('@views/login.vue'),
+      meta: {
+        whitePath: true
+      }
     },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ '@views/About.vue')
-    }
+    home
   ]
 })
+
+// router.beforeEach((to, from, next) => {
+//   // 路由进入前的一些处理
+//   if (to.meta.whitePath) {
+//     next()
+//   } else {
+//     console.log(to, from)
+//   }
+// })
+
+export default router
