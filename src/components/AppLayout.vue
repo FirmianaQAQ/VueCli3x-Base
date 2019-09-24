@@ -5,8 +5,12 @@
  */
 <template>
   <div class="app-layout-index">
-    主页布局
-    <router-view />
+    <v-app>
+      <v-btn color="primary">
+        主页布局
+      </v-btn>
+      <router-view />
+    </v-app>
   </div>
 </template>
 

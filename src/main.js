@@ -5,6 +5,7 @@ import store from '@store/index'
 import method from '@tools/method'
 import VueLazyload from 'vue-lazyload'
 import './assets/stylus/style.styl'
+import vuetify from '@/plugins/vuetify' // path to vuetify export
 
 const FastClick = require('fastclick')
 
@@ -16,6 +17,7 @@ Vue.use(VueLazyload)
 // 结合vuex和路由
 // sync(store, router)
 export const Root = new Vue({
+  vuetify,
   router,
   store,
   ...App
