@@ -16,7 +16,7 @@ export default {
          * @param val
          * @returns {string}
          */
-        $_ALIXToFixedAsset(val) {
+        $_APPToFixedAsset(val) {
           return Number(val || 0).toFixed(0)
         },
         /**
@@ -24,7 +24,7 @@ export default {
          * @param str
          * @returns {*|void|string}
          */
-        $_ALIXGetImgTo132(str = '') {
+        $_APPGetImgTo132(str = '') {
           return utils.tableau.imgTozSize(str)
         },
         /**
@@ -32,7 +32,7 @@ export default {
          * @param time 时间戳
          * C
          */
-        $_ALIXGetYMD(time) {
+        $_APPGetYMD(time) {
           return utils.date.dateToDataObj(time).ymd
         },
         /**
@@ -40,7 +40,7 @@ export default {
          * @param {string} 1
          * @returns {string} ￥0.01
          */
-        $_ALIXFenToYuan(v) {
+        $_APPFenToYuan(v) {
           return (v / 100).toLocaleString('zh', {
             style: 'currency',
             currency: 'CNY'
@@ -51,14 +51,14 @@ export default {
          * @param {string} 10000
          * @returns {string} 10,000
          */
-        $_ALIXDecimal(v) {
+        $_APPDecimal(v) {
           return v.toLocaleString('zh', { style: 'decimal' })
         },
         /**
          * 千分化数字
          * @param {*} v 要转化的数字
          */
-        $_ALIXToThousands(v) {
+        $_APPToThousands(v) {
           return utils.base.toThousands(v)
         },
         /**
@@ -66,19 +66,19 @@ export default {
          * @param {number} 2
          * @returns {string} 3.89
          */
-        $_ALIXCustomDecimalToNum(num, pow = 2) {
+        $_APPCustomDecimalToNum(num, pow = 2) {
           return Math.round(Math.round(Number(num) * Math.pow(10, pow)) / 10)
         }
       },
       directives: {},
       methods: {
-        $_ALIXImgTo132(str = '') {
+        $_APPImgTo132(str = '') {
           return utils.tableau.imgTozSize(str)
         },
         /**
          * 返回上一路由
          */
-        $_ALIXGoBack() {
+        $_APPGoBack() {
           this.$router.go(-1)
         },
         /**

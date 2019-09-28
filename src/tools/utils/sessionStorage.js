@@ -2,7 +2,7 @@
  * @Author: huweijian
  * @Date: 2019-04-28 14:14:41
  * @Last Modified by: Firmiana
- * @Last Modified time: 2019-09-24 00:01:54
+ * @Last Modified time: 2019-09-29 00:57:48
  * @Desc: Session Storage方法
  */
 const sessionStorage = window.sessionStorage
@@ -10,10 +10,10 @@ import { isObj } from './validate'
 /**
  * 给key值加前缀
  * @param {string} key
- * @param {string} [fix='alix']
+ * @param {string} [fix='app']
  * @returns
  */
-function joinKey(key, fix = 'alix') {
+function joinKey(key, fix = 'app') {
   return `${fix}-${key}`
 }
 /**
