@@ -87,7 +87,7 @@ export default {
          * @param params 路由参数
          * @param query 查询参数
          */
-        $_ALIXJumpToPage({ name = '', params = {}, query = {}, path = '' }) {
+        $_APPJumpToPage({ name = '', params = {}, query = {}, path = '' }) {
           const pathObj = path ? { path } : {}
           const nameObj = name ? { name } : {}
           this.$router.push({

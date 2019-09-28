@@ -1,16 +1,16 @@
 /**
  * @Author: Firmiana
  * @Date: 2019-09-23 21:29:11
- * @Desc: 首页
+ * @Desc: test1
  */
 <template>
   <div class="home-summary-index">
-    这是首页
+    这是test1
   </div>
 </template>
 <script>
 export default {
-  name: 'Summary'
+  name: 'Test1'
 }
 </script>
 <style lang="stylus" scoped>

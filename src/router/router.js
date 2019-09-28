@@ -9,6 +9,11 @@ import Router from 'vue-router'
 // import * as types from '../store/mutation-types'
 Vue.use(Router)
 
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 // 引入各个路由
 import home from './home' // 首页
 
@@ -31,13 +36,13 @@ const router = new Router({
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   // 路由进入前的一些处理
-//   if (to.meta.whitePath) {
-//     next()
-//   } else {
-//     console.log(to, from)
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  // 路由进入前的一些处理
+  if (to.meta.whitePath) {
+    next()
+  } else {
+    next()
+  }
+})
 
 export default router
