@@ -16,7 +16,18 @@
         app
         overflow
       >
-        <v-list>
+        <v-list flat>
+          <v-list-item @blur="onOpenMenu">
+            <v-list-item-avatar>
+              <img :src="userAvatar">
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ userName }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-divider />
           <template v-for="item in items">
             <v-list-group
               v-if="!item.children"
@@ -80,7 +91,9 @@
           v-if="primaryDrawer.type !== 'permanent'"
           @click.stop="primaryDrawer.model = !primaryDrawer.model"
         />
-        <v-toolbar-title>Firmiana</v-toolbar-title>
+        <v-toolbar-title>
+          {{ systemName }}
+        </v-toolbar-title>
       </v-app-bar>
       <v-content>
         <!-- 路由显示 -->
@@ -114,15 +127,22 @@ export default {
       footer: {
         inset: true
       },
-      items: layout.menuTree
+      items: layout.menuTree,
+      systemName: 'Firmiana',
+      userName: 'Firmiana',
+      userAvatar: 'http://img.netbian.com/file/2019/0509/cfa94b884a089dfa602a97e2e598b029.jpg',
+      tipMsg: '早上好'
     }
   },
   methods: {
     // 页面跳转
     onChangePage(val) {
       this.$_APPJumpToPage({ name: val })
-      this.primaryDrawer.mini = false
       console.log(val)
+      this.onOpenMenu()
+    },
+    onOpenMenu() {
+      this.primaryDrawer.mini = false
     }
   }
 }
