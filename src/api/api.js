@@ -4,8 +4,9 @@
  * @Desc: 接口统一调用输出
  */
 
-import user from './user'
+// import user from './user'
+import auth from './auth'
 
 export default {
-  user
+  auth
 }

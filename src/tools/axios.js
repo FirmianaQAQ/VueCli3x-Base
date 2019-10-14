@@ -8,6 +8,7 @@ import axios from 'axios'
 import qs from 'qs'
 // import store from '@store/index'
 // import * as types from '@store/mutation-types'
+import utils from '@tools/utils'
 
 const baseUrl = process.env.VUE_APP_URL
 const TIMEOUT = 21000
@@ -29,16 +30,17 @@ async function getHeader(
     json: 'application/json',
     formData: 'multipart/form-data'
   }
-  // const t = utils.sessionStorage.getItem('token') || ''
+  const t = utils.sessionStorage.getItem('token') || ''
   // const t = utils.helper.getToken()
   const acceptMap = {
     normal: 'application/json, text/plain, */*',
     export:
       'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
   }
+  // const t = 'web_5WS2ESYan8pa2u+2/98vM/Dr78Q978canhikFpXQuXo='
   return {
     // 'i-token': token || t,
-    'i-token': token,
+    'token': token || t,
     'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': typeMap[contentType],
     Accept: acceptMap[acceptType],
@@ -82,7 +84,7 @@ function result(r, c) {
       return returnType === 'res' ? res : res.data
     }
     if (showErrMsg) {
-      console.log(res.msg)
+      console.log(res.message)
     }
     // 返回错误信息
     if (c.retrunErrorCode) {
@@ -176,7 +178,6 @@ export async function getAxios(path, params = {}, c = {}) {
     }
     const url = await getUrl(path, config.hostType)
     // let token = localStorage.getItem('token') || store.state.token
-
     const headers = await getHeader(
       config.token,
       config.contentType,

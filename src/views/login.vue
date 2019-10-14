@@ -10,7 +10,7 @@
 </template>
 
 <script>
-// import api from '@/api/api'
+import api from '@/api/api'
 
 export default {
   name: 'Login',
@@ -22,15 +22,15 @@ export default {
     }
   },
   created() {
-    this.getUserList()
+    this.getUserInfo()
   },
   mounted() {
 
   },
   methods: {
-    async getUserList() {
-      // const res = await api.user.getUserList()
-      console.log(1)
+    async getUserInfo() {
+      const res = await api.auth.getUserInfo()
+      console.log(1, res)
     }
   }
 }
