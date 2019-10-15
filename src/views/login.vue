@@ -53,7 +53,7 @@
                     color="primary"
                     @click="login"
                   >
-                    登陆
+                    <span>登陆</span>
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -61,37 +61,19 @@
           </v-row>
         </v-container>
       </v-content>
-      <!-- <v-snackbar
-        v-model="snackbar"
-        :bottom="y === 'bottom'"
-        :color="color"
-        :left="x === 'left'"
-        :multi-line="mode === 'multi-line'"
-        :right="x === 'right'"
-        :timeout="timeout"
-        :top="y === 'top'"
-        :vertical="mode === 'vertical'"
-      >
-        {{ text }}
-        <v-btn
-          dark
-          text
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </v-snackbar> -->
     </v-app>
+    <AppMessage />
   </div>
 </template>
 
 <script>
 import api from '@/api/api'
+import AppMessage from '@components/AppMessage.vue'
 
 export default {
   name: 'Login',
   components: {
-
+    AppMessage
   },
   props: {
     source: {
@@ -105,6 +87,7 @@ export default {
     }
   },
   created() {
+
   },
   mounted() {
 
@@ -116,7 +99,7 @@ export default {
       if (res.code === 0) {
         alert(res.message)
       }
-      console.log(1, res)
+      console.log('res:', res)
     }
   }
 }

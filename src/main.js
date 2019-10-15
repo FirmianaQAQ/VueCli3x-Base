@@ -11,6 +11,7 @@ const FastClick = require('fastclick')
 
 // 通用方法
 Vue.use(method)
+
 // 图片懒加载
 Vue.use(VueLazyload)
 
