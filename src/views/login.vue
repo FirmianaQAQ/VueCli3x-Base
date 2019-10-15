@@ -61,7 +61,7 @@
           </v-row>
         </v-container>
       </v-content>
-      <v-snackbar
+      <!-- <v-snackbar
         v-model="snackbar"
         :bottom="y === 'bottom'"
         :color="color"
@@ -80,7 +80,7 @@
         >
           Close
         </v-btn>
-      </v-snackbar>
+      </v-snackbar> -->
     </v-app>
   </div>
 </template>
