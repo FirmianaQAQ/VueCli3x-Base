@@ -1,3 +1,8 @@
+/**
+ * @Author: Firmiana
+ * @Date: 2019-10-16 20:33:12
+ * @Desc: 通用信息组件（for global）
+ */
 <template>
   <div class="app-message-index">
     <v-app>
