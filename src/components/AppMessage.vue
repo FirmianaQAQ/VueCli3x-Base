@@ -4,31 +4,27 @@
  * @Desc: 通用信息组件（for global）
  */
 <template>
-  <div class="app-message-index">
-    <v-app>
-      <v-snackbar
-        v-model="snackbar"
-        :bottom="y === 'bottom'"
-        :color="color"
-        :left="x === 'left'"
-        :multi-line="mode === 'multi-line'"
-        :right="x === 'right'"
-        :timeout="timeout"
-        :top="y === 'top'"
-        :vertical="mode === 'vertical'"
-      >
-        {{ text }}
-        <v-btn
-          v-show="close"
-          dark
-          text
-          @click="handleClose(false)"
-        >
-          <v-icon>mdi-cancel</v-icon>
-        </v-btn>
-      </v-snackbar>
-    </v-app>
-  </div>
+  <v-snackbar
+    v-model="snackbar"
+    :bottom="y === 'bottom'"
+    :color="color"
+    :left="x === 'left'"
+    :multi-line="mode === 'multi-line'"
+    :right="x === 'right'"
+    :timeout="timeout"
+    :top="y === 'top'"
+    :vertical="mode === 'vertical'"
+  >
+    {{ text }}
+    <v-btn
+      v-show="close"
+      dark
+      text
+      @click="handleClose(false)"
+    >
+      <v-icon>mdi-cancel</v-icon>
+    </v-btn>
+  </v-snackbar>
 </template>
 <script>
 export default {
@@ -37,7 +33,7 @@ export default {
     msgFlag: {
       type: Boolean,
       required: false,
-      default: true
+      default: false
     },
     text: {
       type: String,
@@ -47,7 +43,7 @@ export default {
     timeout: {
       type: Number,
       required: false,
-      default: 16000
+      default: 1500
     },
     color: {
       type: String,
@@ -80,15 +76,27 @@ export default {
       snackbar: this.msgFlag
     }
   },
+  watch: {
+    snackbar(newVal, oldVal) {
+      if (!newVal && oldVal) {
+        this.$el.addEventListener('transitionend', this.destroyElement)
+      }
+    }
+  },
   mounted() {
 
   },
   methods: {
+    open() {
+      this.snackbar = true
+    },
     handleClose(flag) {
       this.snackbar = flag
+    },
+    destroyElement() {
+      this.$el.removeEventListener('transitionend', this.destroyElement)
+      this.$destroy()
     }
   }
 }
 </script>
-
-<style lang="stylus" scoped></style>

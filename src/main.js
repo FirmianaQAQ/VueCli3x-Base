@@ -6,6 +6,7 @@ import method from '@tools/method'
 import VueLazyload from 'vue-lazyload'
 import './assets/stylus/style.styl'
 import vuetify from '@/plugins/vuetify' // path to vuetify export
+import AppMsg from '@/plugins/appMsg.js'
 
 const FastClick = require('fastclick')
 
@@ -23,6 +24,9 @@ export const Root = new Vue({
   store,
   ...App
 })
+
+Vue.use(AppMsg)
+
 // window.Root = Root
 document.addEventListener(
   'DOMContentLoaded',

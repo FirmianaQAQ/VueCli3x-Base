@@ -62,7 +62,7 @@
         </v-container>
       </v-content>
     </v-app>
-    <AppMessage />
+    <!-- <AppMessage /> -->
   </div>
 </template>
 
@@ -73,7 +73,7 @@ import AppMessage from '@components/AppMessage.vue'
 export default {
   name: 'Login',
   components: {
-    AppMessage
+    // AppMessage
   },
   props: {
     source: {
@@ -98,8 +98,10 @@ export default {
     async login() {
       const params = {}
       const res = await api.auth.login(params)
+      this.$Msg.error('2342342423')
+
       if (res.code === 0) {
-        alert(res.message)
+        //
       }
       console.log('res:', res)
     },
