@@ -10,7 +10,8 @@ export default {
 }
 </script>
 <style rel="stylesheet/stylus" lang="stylus" scoped>
-.app {
+#app {
   width 100vw
+  height 100vh
 }
 </style>

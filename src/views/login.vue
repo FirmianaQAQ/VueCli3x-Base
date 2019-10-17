@@ -84,13 +84,15 @@ export default {
   },
   data() {
     return {
+      loading: false
     }
   },
+  watch: {
+  },
   created() {
-
+    // this.fetchBingImage() // 获取背景图
   },
   mounted() {
-
   },
   methods: {
     async login() {
@@ -100,6 +102,12 @@ export default {
         alert(res.message)
       }
       console.log('res:', res)
+    },
+    // 获取背景图
+    async fetchBingImage() {
+      const imgUrl = await api.auth.getBingImage()
+      const app = document.getElementById('app')
+      app.setAttribute('style', `background-image: url(${imgUrl});`)
     }
   }
 }
