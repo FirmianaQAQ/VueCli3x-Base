@@ -95,7 +95,10 @@ export default {
     async login() {
       const params = {}
       const res = await api.auth.login(params)
-      this.$msg({ type: 'cyan', text: '这是一条cyan消息' })
+      const msgBox = ['success', 'warning', 'error', 'info', 'cyan']
+      const msgType = Math.floor(Math.random() * (4 - 0)) + 0
+      const type = msgBox[msgType]
+      this.$msg({ type: type, text: `这是一条${type}消息` })
       if (res.code === 0) {
         //
       }
