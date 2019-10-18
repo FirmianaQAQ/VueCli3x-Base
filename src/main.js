@@ -6,12 +6,17 @@ import method from '@tools/method'
 import VueLazyload from 'vue-lazyload'
 import './assets/stylus/style.styl'
 import vuetify from '@/plugins/vuetify' // path to vuetify export
-import AppMsg from '@/plugins/appMsg.js'
+import Msg from '@components/AppMessage.vue'
+
+Vue.use(Msg)
 
 const FastClick = require('fastclick')
 
 // 通用方法
 Vue.use(method)
+
+// import AppMsg from '@/demo/appMsg.js'
+// Vue.use(AppMsg)
 
 // 图片懒加载
 Vue.use(VueLazyload)
@@ -24,8 +29,6 @@ export const Root = new Vue({
   store,
   ...App
 })
-
-Vue.use(AppMsg)
 
 // window.Root = Root
 document.addEventListener(

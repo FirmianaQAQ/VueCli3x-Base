@@ -62,18 +62,15 @@
         </v-container>
       </v-content>
     </v-app>
-    <!-- <AppMessage /> -->
   </div>
 </template>
 
 <script>
 import api from '@/api/api'
-import AppMessage from '@components/AppMessage.vue'
 
 export default {
   name: 'Login',
   components: {
-    // AppMessage
   },
   props: {
     source: {
@@ -90,7 +87,7 @@ export default {
   watch: {
   },
   created() {
-    // this.fetchBingImage() // 获取背景图
+
   },
   mounted() {
   },
@@ -98,8 +95,7 @@ export default {
     async login() {
       const params = {}
       const res = await api.auth.login(params)
-      this.$Msg.error('2342342423')
-
+      this.$msg({ type: 'cyan', text: '这是一条cyan消息' })
       if (res.code === 0) {
         //
       }
