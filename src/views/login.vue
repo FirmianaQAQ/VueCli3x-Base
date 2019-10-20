@@ -96,10 +96,22 @@ export default {
   },
   methods: {
     async login() {
-      const res = await api.auth.login({ account: this.account, pwd: this.password })
+      const res = await api.auth.login({
+        account: this.account,
+        pwd: this.password
+      })
       if (res !== -1) {
-        console.log('res:', res)
+        this.$G.Token = res.data
+        this.getUserInfo()
       }
+    },
+    async getUserInfo() {
+      const res = await api.auth.getUserInfo()
+      if (res !== -1) {
+        this.$G.User = res.data
+        // TODO: 页面跳转
+      }
+      console.log('userInfo:', this.$G.User)
     },
     // 获取背景图
     async fetchBingImage() {

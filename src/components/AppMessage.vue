@@ -48,7 +48,7 @@ const Msg = {
       if (v) {
         setTimeout(() => {
           this.onClose()
-        }, 3000)
+        }, 3000000)
       }
     }
   },
@@ -62,7 +62,7 @@ const Msg = {
     },
     onCancle() {
       if (this.cancelBtn) {
-        this.cancelBtn.apply(this.content)
+        this.cancelBtn.apply(this.text)
       }
       this.onClose()
     }
@@ -145,6 +145,8 @@ export default Msg
     letter-spacing 0
     line-height 30px
     margin-left 8px
+    min-width 345px
+    word-wrap break-word
   }
   .delete-icon {
     display block
