@@ -48,7 +48,7 @@ const Msg = {
       if (v) {
         setTimeout(() => {
           this.onClose()
-        }, 3000000)
+        }, 3000)
       }
     }
   },

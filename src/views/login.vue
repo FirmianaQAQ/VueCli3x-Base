@@ -32,6 +32,7 @@
                 <v-card-text>
                   <v-form>
                     <v-text-field
+                      v-model="account"
                       label="账号"
                       name="login"
                       prepend-icon="person"
@@ -40,6 +41,7 @@
 
                     <v-text-field
                       id="password"
+                      v-model="password"
                       label="密码"
                       name="password"
                       prepend-icon="lock"
@@ -81,27 +83,26 @@ export default {
   },
   data() {
     return {
-      loading: false
+      loading: false,
+      account: '',
+      password: ''
     }
   },
   watch: {
   },
   created() {
-
   },
   mounted() {
   },
   methods: {
     async login() {
-      const params = {}
-      const res = await api.auth.login(params)
-      const msgBox = ['success', 'warning', 'error', 'info', 'cyan']
-      const msgType = Math.floor(Math.random() * (4 - 0)) + 0
-      const type = msgBox[msgType]
-      this.$msg({ type: type, text: `这是一条${type}消息` })
+      const res = await api.auth.login({ account: this.account, pwd: this.password })
+
       if (res.code === 0) {
-        //
+        // this.$msg({ type: 'error', text: res.msg })
       }
+      // console.log(this.$G)
+
       console.log('res:', res)
     },
     // 获取背景图

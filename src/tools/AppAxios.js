@@ -3,12 +3,12 @@
  * @Date: 2019-09-19 17:35:32
  * @Desc: 封装的axios方法
  */
-
 import axios from 'axios'
 import qs from 'qs'
 // import store from '@store/index'
 // import * as types from '@store/mutation-types'
 import utils from '@tools/utils'
+import TheGlobal from '@/plugins/TheGlobal'
 
 const baseUrl = process.env.VUE_APP_URL
 const TIMEOUT = 21000
@@ -30,7 +30,8 @@ async function getHeader(
     json: 'application/json',
     formData: 'multipart/form-data'
   }
-  const t = utils.sessionStorage.getItem('token') || ''
+
+  const t = TheGlobal.Token
   // const t = utils.helper.getToken()
   const acceptMap = {
     normal: 'application/json, text/plain, */*',
@@ -84,7 +85,9 @@ function result(r, c) {
       return returnType === 'res' ? res : res.data
     }
     if (showErrMsg) {
-      console.log(res.message)
+      // 调用外部js msgBox弹窗
+      utils.base.msgBox('error', res.msg)
+      // console.log(res.msg)
     }
     // 返回错误信息
     if (c.retrunErrorCode) {
@@ -137,7 +140,6 @@ export async function postAxios(path, params = {}, c = {}) {
   try {
     // 更具环境配置自动拼接url ${ENV === 'dev' ? ':7001' : '/xxxx'}
     const url = await getUrl(path, config.hostType)
-
     // 整合参数
     const obj = {
       method: 'POST',
@@ -155,6 +157,7 @@ export async function postAxios(path, params = {}, c = {}) {
       config.acceptType,
       config.headerParams
     )
+
     const r = await axios({
       ...obj,
       headers

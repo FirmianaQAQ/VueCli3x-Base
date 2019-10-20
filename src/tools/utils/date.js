@@ -2,12 +2,10 @@
  * @Author: Firmiana
  * @Date: 2019-04-03 15:47:32
  * @Last Modified by: Firmiana
- * @Last Modified time: 2019-09-24 00:02:42
+ * @Last Modified time: 2019-10-20 11:40:26
  * @Desc: 时间类处理方法
  */
-import {
-  zeroFill
-} from './base'
+import { zeroFill } from './base'
 
 /**
  * 时分秒时间戳互转

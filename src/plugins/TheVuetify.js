@@ -1,3 +1,8 @@
+/**
+ * @Author: Firmiana
+ * @Date: 2019-10-20 13:56:25
+ * @Desc: Vuetify引入及配置
+ */
 
 import Vue from 'vue'
 import Vuetify from 'vuetify'
