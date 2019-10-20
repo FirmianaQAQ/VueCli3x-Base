@@ -86,7 +86,7 @@ function result(r, c) {
     }
     if (showErrMsg) {
       // 调用外部js msgBox弹窗
-      utils.base.msgBox('error', res.msg)
+      utils.base.msgBox('warning', res.msg)
       // console.log(res.msg)
     }
     // 返回错误信息
@@ -103,7 +103,7 @@ function statusError(config) {
   const response = config.response
   if (!response) {
     // 防止某些接口挂掉，导致页面空白
-    console.log('系统错误')
+    utils.base.msgBox('error', '系统异常！')
     return
   }
   // const status = response

@@ -2,7 +2,7 @@
  * @Author: Firmiana
  * @Date: 2019-04-03 11:18:19
  * @Last Modified by: Firmiana
- * @Last Modified time: 2019-10-20 14:16:35
+ * @Last Modified time: 2019-10-20 14:46:54
  * @Desc: 基础方法/未分a类方法
  */
 
@@ -12,7 +12,7 @@ import that from '@/main.js'
 * 外部使用msgBox的推出方法
 */
 export function msgBox(type, str) {
-  that.$msg({ type: 'error', text: str })
+  that.$msg({ type: type, text: str })
 }
 
 /**

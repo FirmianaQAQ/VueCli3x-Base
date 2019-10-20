@@ -97,13 +97,9 @@ export default {
   methods: {
     async login() {
       const res = await api.auth.login({ account: this.account, pwd: this.password })
-
-      if (res.code === 0) {
-        // this.$msg({ type: 'error', text: res.msg })
+      if (res !== -1) {
+        console.log('res:', res)
       }
-      // console.log(this.$G)
-
-      console.log('res:', res)
     },
     // 获取背景图
     async fetchBingImage() {
