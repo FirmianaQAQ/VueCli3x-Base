@@ -58,6 +58,8 @@ module.exports = {
           '@assets': path.resolve(__dirname, './src/assets'),
           '@router': path.resolve(__dirname, './src/router'),
           '@store': path.resolve(__dirname, './src/store'),
+          '@plugins': path.resolve(__dirname, './src/plugins'),
+          '@public': path.resolve(__dirname, './src/public'),
           '@tools': path.resolve(__dirname, './src/tools')
         } // 别名配置
       },

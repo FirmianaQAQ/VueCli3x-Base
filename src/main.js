@@ -2,21 +2,21 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from '@router/router'
 import store from '@store/index'
-import method from '@tools/method'
+import method from '@tools/AppMethod'
 import VueLazyload from 'vue-lazyload'
 import './assets/stylus/style.styl'
-import vuetify from '@/plugins/vuetify' // path to vuetify export
-import Msg from '@components/AppMessage.vue'
+import vuetify from '@/plugins/TheVuetify' // path to vuetify export
+import TheGlobal from '@/plugins/TheGlobal'
+import AppMsg from '@components/AppMessage.vue'
 
-Vue.use(Msg)
+Vue.use(AppMsg)
+// 注册全局属性$G
+Vue.prototype.$G = TheGlobal
 
 const FastClick = require('fastclick')
 
 // 通用方法
 Vue.use(method)
-
-// import AppMsg from '@/demo/appMsg.js'
-// Vue.use(AppMsg)
 
 // 图片懒加载
 Vue.use(VueLazyload)
@@ -33,7 +33,7 @@ export const Root = new Vue({
 // window.Root = Root
 document.addEventListener(
   'DOMContentLoaded',
-  function() {
+  () => {
     FastClick.attach(document.body)
     Root.$mount('#app')
   },
@@ -46,3 +46,6 @@ Vue.config.productionTip = false
 // 显示当前环境
 const mode = process.env.mode || process.env.NODE_ENV
 if (mode === 'development') console.log(`%c ${mode} `, 'background:#aaa;color:#bada55')
+
+// 给外部js使用this
+export default Root
