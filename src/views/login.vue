@@ -32,7 +32,7 @@
                 <v-card-text>
                   <v-form>
                     <v-text-field
-                      v-model="account"
+                      v-model.trim="account"
                       label="账号"
                       name="login"
                       prepend-icon="person"
@@ -41,7 +41,7 @@
 
                     <v-text-field
                       id="password"
-                      v-model="password"
+                      v-model.trim="pwd"
                       label="密码"
                       name="password"
                       prepend-icon="lock"
@@ -53,9 +53,10 @@
                   <v-spacer />
                   <v-btn
                     color="primary"
+                    :disabled="loading"
                     @click="login"
                   >
-                    <span>登陆</span>
+                    <span>{{ loading ? '登陆中...' : '登陆' }}</span>
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -69,6 +70,7 @@
 
 <script>
 import api from '@/api/api'
+import { setItem, getItem } from '@/tools/utils/sessionStorage'
 
 export default {
   name: 'Login',
@@ -85,10 +87,21 @@ export default {
     return {
       loading: false,
       account: '',
-      password: ''
+      pwd: ''
     }
   },
   watch: {
+
+  },
+  // 进入登录页面之前检查,如果已经登录,进入之前的页面
+  beforeRouteEnter(to, from, next) {
+    if (getItem('i-token') !== null) {
+      next({
+        path: from.path === '/' ? '/home/summary' : from.path
+      })
+    } else {
+      next()
+    }
   },
   created() {
   },
@@ -96,22 +109,30 @@ export default {
   },
   methods: {
     async login() {
-      const res = await api.auth.login({
+      this.loading = true
+      const params = {
         account: this.account,
-        pwd: this.password
-      })
+        pwd: this.pwd
+      }
+      const res = await api.auth.login(params)
       if (res !== -1) {
         this.$G.Token = res.data
+        setItem('i-token', res.data)
         this.getUserInfo()
       }
+      this.loading = false
     },
     async getUserInfo() {
       const res = await api.auth.getUserInfo()
       if (res !== -1) {
         this.$G.User = res.data
+        setItem('i-info', JSON.stringify(res.data))
+        this.loading = false
+        this.$msg({ type: 'success', text: '登陆成功' })
         // TODO: 页面跳转
+        this.$_APPJumpToPage({ name: 'summary' })
       }
-      console.log('userInfo:', this.$G.User)
+      this.loading = false
     },
     // 获取背景图
     async fetchBingImage() {

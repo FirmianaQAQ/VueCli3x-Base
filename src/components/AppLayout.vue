@@ -19,11 +19,18 @@
         <v-list flat>
           <v-list-item @blur="onOpenMenu">
             <v-list-item-avatar>
-              <img :src="userAvatar">
+              <img
+                v-if="userAvatar"
+                :src="userAvatar"
+              >
+              <img
+                v-else
+                src="../assets/images/zhizi.jpg"
+              >
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>
-                {{ userName }}
+                {{ tipMsg + "，" + userName }}
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -111,6 +118,8 @@
 
 <script>
 import layout from '@/assets/layout/tree.js'
+import { getItem } from '@/tools/utils/sessionStorage'
+import { getNowDateShow } from '@/tools/utils/date'
 
 export default {
   name: 'AppLayout',
@@ -128,11 +137,14 @@ export default {
         inset: true
       },
       items: layout.menuTree,
-      systemName: 'Firmiana',
-      userName: 'Firmiana',
-      userAvatar: 'http://img.netbian.com/file/2019/0509/cfa94b884a089dfa602a97e2e598b029.jpg',
-      tipMsg: '早上好'
+      systemName: '',
+      userName: JSON.parse(getItem('i-info')).nickname || '',
+      userAvatar: JSON.parse(getItem('i-info')).avatar || '',
+      tipMsg: getNowDateShow() || ''
     }
+  },
+  mounted() {
+    // const userInfo = JSON.parse(getItem('i-info'))
   },
   methods: {
     // 页面跳转

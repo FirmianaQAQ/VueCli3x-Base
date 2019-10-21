@@ -8,7 +8,7 @@ import qs from 'qs'
 // import store from '@store/index'
 // import * as types from '@store/mutation-types'
 import utils from '@tools/utils'
-import TheGlobal from '@/plugins/TheGlobal'
+import { getItem } from '@/tools/utils/sessionStorage'
 
 const baseUrl = process.env.VUE_APP_URL
 const TIMEOUT = 21000
@@ -31,7 +31,7 @@ async function getHeader(
     formData: 'multipart/form-data'
   }
 
-  const t = TheGlobal.Token
+  const t = getItem('i-token')
   // const t = utils.helper.getToken()
   const acceptMap = {
     normal: 'application/json, text/plain, */*',
