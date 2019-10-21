@@ -1,7 +1,7 @@
 /**
  * @Author: Firmiana
  * @Date: 2019-09-04 16:37:00
- * @Desc: 登陆页
+ * @Desc: 登录页
  */
 <template>
   <div class="login-index">
@@ -26,7 +26,7 @@
                   dark
                   flat
                 >
-                  <v-toolbar-title>登陆</v-toolbar-title>
+                  <v-toolbar-title>登录</v-toolbar-title>
                   <v-spacer />
                 </v-toolbar>
                 <v-card-text>
@@ -56,7 +56,7 @@
                     :disabled="loading"
                     @click="login"
                   >
-                    <span>{{ loading ? '登陆中...' : '登陆' }}</span>
+                    <span>{{ loading ? '登录中...' : '登录' }}</span>
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -128,7 +128,7 @@ export default {
         this.$G.User = res.data
         setItem('i-info', JSON.stringify(res.data))
         this.loading = false
-        this.$msg({ type: 'success', text: '登陆成功' })
+        this.$msg({ type: 'success', text: '登录成功' })
         // TODO: 页面跳转
         this.$_APPJumpToPage({ name: 'summary' })
       }
