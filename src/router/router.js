@@ -7,6 +7,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import store from '../store/index.js'
 // import * as types from '../store/mutation-types'
+import { getItem } from '@/tools/utils/sessionStorage'
+
 Vue.use(Router)
 
 const originalPush = Router.prototype.push
@@ -37,12 +39,22 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  console.log(from)
+  console.log(to)
   // 路由进入前的一些处理
   if (to.meta.whitePath) {
     next()
-  } else {
-    next()
+    return
   }
+
+  if (getItem('i-token') === null) {
+    next({
+      path: '/login'
+    })
+    return
+  }
+
+  next()
 })
 
 export default router
