@@ -140,21 +140,36 @@ export default {
       systemName: '',
       userName: JSON.parse(getItem('i-info')).nickname || '',
       userAvatar: JSON.parse(getItem('i-info')).avatar || '',
-      tipMsg: getNowDateShow() || ''
+      tipMsg: getNowDateShow() || '',
+      nowPage: ''
     }
   },
   mounted() {
+    this.nowPage = this.$route.name
+
+    if (this.nowPage !== '') this.checkNowPage()
+
     // const userInfo = JSON.parse(getItem('i-info'))
   },
   methods: {
     // 页面跳转
     onChangePage(val) {
       this.$_APPJumpToPage({ name: val })
-      console.log(val)
       this.onOpenMenu()
     },
     onOpenMenu() {
       this.primaryDrawer.mini = false
+    },
+    checkNowPage() {
+      this.items.map(item => {
+        if (!item.children) {
+          item.page === this.nowPage ? item.model = true : item.model = false
+          return
+        }
+        item.children.map(itemChild => {
+          itemChild.page === this.nowPage ? item.model = true : item.model = false
+        })
+      })
     }
   }
 }

@@ -39,8 +39,8 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(from)
-  console.log(to)
+  // console.log(from)
+  // console.log(to)
   // 路由进入前的一些处理
   if (to.meta.whitePath) {
     next()
@@ -53,7 +53,6 @@ router.beforeEach((to, from, next) => {
     })
     return
   }
-
   next()
 })
 
