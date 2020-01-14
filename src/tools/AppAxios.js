@@ -88,6 +88,7 @@ function result(r, c) {
       // 调用外部js msgBox弹窗
       utils.base.msgBox('warning', res.msg)
       // console.log(res.msg)
+      // this.$router.push('/login?rurl=' + this.$route.path)
     }
     // 返回错误信息
     if (c.retrunErrorCode) {
@@ -103,7 +104,7 @@ function statusError(config) {
   const response = config.response
   if (!response) {
     // 防止某些接口挂掉，导致页面空白
-    utils.base.msgBox('error', '系统异常！')
+    // utils.base.msgBox('error', '系统异常！')
     return
   }
   // const status = response
@@ -111,7 +112,8 @@ function statusError(config) {
   //   400: '请求错误',
   //   401: '未授权，请登录',
   //   403: '拒绝访问',
-  //   404: `请求地址出错${response.config.url}`,
+  //   // 404: `请求地址出错${response.config.url}`,
+  //   404: `请求地址出错`,
   //   408: '请求超时',
   //   500: '服务器内部错误',
   //   501: '服务未实现',
@@ -121,13 +123,10 @@ function statusError(config) {
   //   505: 'HTTP版本不受支持'
   // }
   // const funcMap = {
-  //   401: () => {
-  //     store.dispatch(types.INITIALIZE_LOGIN_OUT_GET, () => {
-  //       this.$router.push('/login?rurl=' + this.$route.path)
-  //     })
-  //   }
+  //   401: () => { }
   // }
-  // response.status !== 401 && message.error(msgMap[status] || '系统错误')
+  // console.log(status)
+  // response.status !== 401 && utils.base.msgBox('error', msgMap[status] || '系统错误')
   // funcMap[status] && funcMap[status]()
 }
 

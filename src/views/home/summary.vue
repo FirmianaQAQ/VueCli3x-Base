@@ -9,8 +9,20 @@
   </div>
 </template>
 <script>
+import api from '@/api/api'
+
 export default {
-  name: 'Summary'
+  name: 'Summary',
+  mounted() {
+    this.getUserInfo()
+  },
+  methods: {
+    async getUserInfo() {
+      // const res =
+      await api.auth.getUserInfo()
+      // console.log(res)
+    }
+  }
 }
 </script>
 <style lang="stylus" scoped>
